@@ -52,7 +52,7 @@ final class Logistic(val logisticM: Double = 1.0,
     * @param x independent variable.
     * @return { @code exp(-k*(x-x0))}
     **/
-  def logisticExp(x: Double): Double = if (check(x)) exp(-logisticK * (x - logisticX0))
+  def logisticExp(x: Double): Double = if (checkX(x)) exp(-logisticK * (x - logisticX0))
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
@@ -61,7 +61,7 @@ final class Logistic(val logisticM: Double = 1.0,
     * @param x independent variable.
     * @return {1+exp(-k*(x-x0))}.
     */
-  def logisticExpAddOne(x: Double): Double = if (check(x)) 1 + logisticExp(x)
+  def logisticExpAddOne(x: Double): Double = if (checkX(x)) 1 + logisticExp(x)
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
@@ -71,7 +71,7 @@ final class Logistic(val logisticM: Double = 1.0,
     * @param x independent variable.
     * @return the derivative value.
     */
-  override def derivative(x: Double): Double = if (check(x)) (logisticM * logisticK * logisticExp(x)) / pow(logisticExpAddOne(x), 2)
+  override def derivative(x: Double): Double = if (checkX(x)) (logisticM * logisticK * logisticExp(x)) / pow(logisticExpAddOne(x), 2)
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
@@ -88,7 +88,7 @@ final class Logistic(val logisticM: Double = 1.0,
     * @param x independent variable.
     * @return the integral value.
     */
-  override def integrate(x: Double): Double = if (check(x)) logisticM * (x + ((log(logisticExpAddOne(x))) / (logisticK)))
+  override def integrate(x: Double): Double = if (checkX(x)) logisticM * (x + ((log(logisticExpAddOne(x))) / (logisticK)))
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
@@ -119,7 +119,7 @@ final class Logistic(val logisticM: Double = 1.0,
     * @return the function value at { @code x}.
     */
   override def value(x: Double): Double =
-    if (check(x)) logisticM / (1 + exp(-logisticK * (x - logisticX0)))
+    if (checkX(x)) logisticM / (1 + exp(-logisticK * (x - logisticX0)))
     else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**

@@ -49,7 +49,7 @@ trait TUnivariateFunction extends UnivariateFunction with Serializable {
     * @return boolean for whether the value { @code x} is
     *         in interval of independent variable.
     */
-  def check(x: Double): Boolean = if (x >= lowerX && x <= upperX) true else false
+  def checkX(x: Double): Boolean = if (x >= lowerX && x <= upperX) true else false
 
   /**
     * The string form of analysis formula of univariate function.
