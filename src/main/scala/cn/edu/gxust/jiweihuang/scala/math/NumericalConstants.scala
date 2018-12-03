@@ -16,7 +16,7 @@
 package cn.edu.gxust.jiweihuang.scala.math
 
 /**
-  * <p>The object {@code NumericalConstants} is used for
+  * <p> The object [[NumericalConstants]] is used for
   * representing some constant of numerical calculation.</p>
   *
   * @author JiweiHuang.

@@ -18,10 +18,10 @@ package cn.edu.gxust.jiweihuang.scala.math.function
 import org.hipparchus.analysis.UnivariateFunction
 
 /**
-  * <p>The trait {@code TUnivariateFunction} is used for
+  * <p>The trait [[TUnivariateFunction]] is used for
   * representing univariate function.it inherit from
-  * the interface {@code UnivariateFunction} which
-  * in {@code org.hipparchus.analysis} of Hipparchus library
+  * the interface [[UnivariateFunction]] which
+  * in {org.hipparchus.analysis} of Hipparchus library
   * for utilizing the tools of numerical calculation.</p>
   *
   * @author JiweiHuang
