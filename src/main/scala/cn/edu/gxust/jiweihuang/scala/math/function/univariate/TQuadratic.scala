@@ -15,12 +15,7 @@
  */
 package cn.edu.gxust.jiweihuang.scala.math.function.univariate
 
-import cn.edu.gxust.jiweihuang.scala.math.function.{
-  TUnivariateDerivativeFunction,
-  TUnivariateDifferentiableFunction,
-  TUnivariateIntegrableFunction,
-  TUnivariateIntegralFunction
-}
+import cn.edu.gxust.jiweihuang.scala.math.function.{TUnivariateDerivativeFunction, TUnivariateDifferentiableFunction, TUnivariateIntegrableFunction, TUnivariateIntegralFunction}
 
 /**
   * The trait {@code TQuadratic} is used for representing quadratic function.

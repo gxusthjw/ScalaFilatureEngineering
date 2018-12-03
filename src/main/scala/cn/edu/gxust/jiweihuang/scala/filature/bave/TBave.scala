@@ -18,5 +18,6 @@ package cn.edu.gxust.jiweihuang.scala.filature.bave
 trait TBave[T] {
   val baveID: Long
   val baveLength: T
-  def baveSize(pos: T):Double
+
+  def baveSize(pos: T): Double
 }

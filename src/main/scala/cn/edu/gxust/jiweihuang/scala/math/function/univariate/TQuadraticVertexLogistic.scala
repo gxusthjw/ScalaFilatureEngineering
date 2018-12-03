@@ -20,6 +20,9 @@ import org.hipparchus.analysis.differentiation.DerivativeStructure
 
 trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction with TUnivariateIntegrableFunction with
   TUnivariateDerivativeFunction with TUnivariateIntegralFunction {
+  override val formula: String
+  override val dformula: String
+  override val iformula: String
   val quadraticVertexA: Double
   val quadraticVertexB: Double
   val quadraticVertexC: Double
@@ -36,10 +39,6 @@ trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction with TU
   override def value(derivativeStructure: DerivativeStructure): DerivativeStructure
 
   override def value(v: Double): Double
-
-  override val formula: String
-  override val dformula: String
-  override val iformula: String
 }
 
 object TQuadraticVertexLogistic {

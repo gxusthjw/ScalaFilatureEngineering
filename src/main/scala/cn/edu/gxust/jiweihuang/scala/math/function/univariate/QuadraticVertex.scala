@@ -33,7 +33,7 @@ import scala.math._
   * @param quadraticVertexC the parameter {c} of the vertex form of quadratic function.
   */
 final class QuadraticVertex(val quadraticVertexA: Double, val quadraticVertexB: Double,
-                      val quadraticVertexC: Double) extends TQuadratic {
+                            val quadraticVertexC: Double) extends TQuadratic {
   /**
     * Ensure the parameters {@code quadraticVertexA != 0}
     */
@@ -65,6 +65,18 @@ final class QuadraticVertex(val quadraticVertexA: Double, val quadraticVertexB: 
     * The number of intersection with x axis of function
     */
   override val xIntersectionNum: Int = xIntersection.length
+  /**
+    * The String form of univariate function.
+    */
+  override val formula: String = s"$quadraticVertexA * pow(x - $quadraticVertexB, 2) + $quadraticVertexC"
+  /**
+    * The string form of univariate analytical integral function.
+    */
+  override val iformula: String = s"$quadraticVertexA * pow($quadraticVertexB, 2) * x + $quadraticVertexC * x - $quadraticVertexA * $quadraticVertexB * Math.pow(x, 2) + $quadraticVertexA * pow(x, 3) / 3"
+  /**
+    * <p>The string form of univariate analytical derivative function.</p>
+    */
+  override val dformula: String = s"2 * $quadraticVertexA * (x - $quadraticVertexB)"
 
   /**
     * <p>override the method of {@code UnivariateFunction},it can be used to
@@ -111,19 +123,6 @@ final class QuadraticVertex(val quadraticVertexA: Double, val quadraticVertexB: 
   override def derivative(x: Double): Double = 2 * quadraticVertexA * (x - quadraticVertexB)
 
   /**
-    * The String form of univariate function.
-    */
-  override val formula: String = s"$quadraticVertexA * pow(x - $quadraticVertexB, 2) + $quadraticVertexC"
-  /**
-    * The string form of univariate analytical integral function.
-    */
-  override val iformula: String = s"$quadraticVertexA * pow($quadraticVertexB, 2) * x + $quadraticVertexC * x - $quadraticVertexA * $quadraticVertexB * Math.pow(x, 2) + $quadraticVertexA * pow(x, 3) / 3"
-  /**
-    * <p>The string form of univariate analytical derivative function.</p>
-    */
-  override val dformula: String = s"2 * $quadraticVertexA * (x - $quadraticVertexB)"
-
-  /**
     * The add operation for {@code QuadraticVertex} object and  a double number.
     *
     * @param n the operands
@@ -163,8 +162,6 @@ final class QuadraticVertex(val quadraticVertexA: Double, val quadraticVertexB: 
     new QuadraticVertex(quadraticVertexA / n, quadraticVertexB, quadraticVertexC / n)
   }
 
-  def canEqual(other: Any): Boolean = other.isInstanceOf[QuadraticVertex]
-
   override def equals(other: Any): Boolean = other match {
     case that: QuadraticVertex =>
       (that canEqual this) &&
@@ -173,6 +170,8 @@ final class QuadraticVertex(val quadraticVertexA: Double, val quadraticVertexB: 
         quadraticVertexC == that.quadraticVertexC
     case _ => false
   }
+
+  def canEqual(other: Any): Boolean = other.isInstanceOf[QuadraticVertex]
 
   override def hashCode(): Int = {
     val state = Seq(quadraticVertexA, quadraticVertexB, quadraticVertexC)

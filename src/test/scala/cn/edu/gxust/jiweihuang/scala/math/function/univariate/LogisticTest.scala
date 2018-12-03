@@ -15,8 +15,6 @@
  */
 package cn.edu.gxust.jiweihuang.scala.math.function.univariate
 
-import org.scalatest._
-
 class LogisticTest {
 
 }

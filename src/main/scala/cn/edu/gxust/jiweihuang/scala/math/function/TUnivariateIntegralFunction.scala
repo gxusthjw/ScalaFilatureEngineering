@@ -26,6 +26,16 @@ package cn.edu.gxust.jiweihuang.scala.math.function
 trait TUnivariateIntegralFunction extends TUnivariateFunction {
 
   /**
+    * <p>The string form of analysis formula of
+    * univariate integral function.</p>
+    */
+  val iformula: String
+  /**
+    * The integral constant of univariate integral function.
+    */
+  var integralConstant: Double = 0.0
+
+  /**
     * The method {@code integrate(x: Double)} is used to get
     * the integral value of univariate integral function.
     *
@@ -43,15 +53,4 @@ trait TUnivariateIntegralFunction extends TUnivariateFunction {
     * @return the integral value.
     */
   def integrate(x0: Double = lowerX, x1: Double = upperX): Double = integrate(x1) - integrate(x0)
-
-  /**
-    * The integral constant of univariate integral function.
-    */
-  var integralConstant: Double = 0.0
-
-  /**
-    * <p>The string form of analysis formula of
-    * univariate integral function.</p>
-    */
-  val iformula: String
 }

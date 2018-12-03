@@ -18,6 +18,6 @@ package cn.edu.gxust.jiweihuang.scala.filature.bave.qvlmodel
 import cn.edu.gxust.jiweihuang.scala.filature.bave.TCBave
 import cn.edu.gxust.jiweihuang.scala.math.function.univariate.TQuadraticVertexLogistic
 
-trait TQVLBaveModel extends TQuadraticVertexLogistic with TCBave{
+trait TQVLBaveModel extends TQuadraticVertexLogistic with TCBave {
 
 }

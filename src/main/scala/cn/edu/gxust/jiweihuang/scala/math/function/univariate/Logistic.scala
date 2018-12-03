@@ -15,15 +15,11 @@
  */
 package cn.edu.gxust.jiweihuang.scala.math.function.univariate
 
-import cn.edu.gxust.jiweihuang.scala.math.function.{
-  TUnivariateDerivativeFunction,
-  TUnivariateDifferentiableFunction,
-  TUnivariateIntegrableFunction,
-  TUnivariateIntegralFunction
-}
-import org.hipparchus.analysis.differentiation.DerivativeStructure
+import cn.edu.gxust.jiweihuang.scala.math.function.{TUnivariateDerivativeFunction, TUnivariateDifferentiableFunction, TUnivariateIntegrableFunction, TUnivariateIntegralFunction}
 import org.hipparchus.analysis.ParametricUnivariateFunction
-import math.{exp, pow, log}
+import org.hipparchus.analysis.differentiation.DerivativeStructure
+
+import scala.math.{exp, log, pow}
 
 
 /**
@@ -47,22 +43,20 @@ final class Logistic(val logisticM: Double = 1.0,
   if (logisticM == 0) throw new IllegalArgumentException(s"Expected the parameter {logisticM != 0},but get {logisticM = $logisticM}")
 
   /**
-    * to calculate the exp part of logistic function.
-    *
-    * @param x independent variable.
-    * @return { @code exp(-k*(x-x0))}
-    **/
-  def logisticExp(x: Double): Double = if (checkX(x)) exp(-logisticK * (x - logisticX0))
-  else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
-
-  /**
-    * to calculate one add exp part of logistic function.
-    *
-    * @param x independent variable.
-    * @return {1+exp(-k*(x-x0))}.
+    * <p>The string form of analysis formula of
+    * univariate derivative function.</p>
     */
-  def logisticExpAddOne(x: Double): Double = if (checkX(x)) 1 + logisticExp(x)
-  else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
+  override val dformula: String =
+    s"($logisticM * $logisticK * exp(-$logisticK * (x - $logisticX0))) / pow((1 + exp(-$logisticK * (x - $logisticX0))), 2)"
+  /**
+    * <p>The string form of analysis formula of
+    * univariate integral function.</p>
+    */
+  override val iformula: String = s"$logisticM * (x + ((log(exp(-$logisticK * (x - $logisticX0)))) / ($logisticK)))"
+  /**
+    * The string form of analysis formula of univariate function.
+    */
+  override val formula: String = s"$logisticM / (1 + exp(-$logisticK * (x - $logisticX0)))"
 
   /**
     * <p>The method {@code derivative(x: Double)} is used to
@@ -75,11 +69,22 @@ final class Logistic(val logisticM: Double = 1.0,
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
-    * <p>The string form of analysis formula of
-    * univariate derivative function.</p>
+    * to calculate one add exp part of logistic function.
+    *
+    * @param x independent variable.
+    * @return {1+exp(-k*(x-x0))}.
     */
-  override val dformula: String =
-    s"($logisticM * $logisticK * exp(-$logisticK * (x - $logisticX0))) / pow((1 + exp(-$logisticK * (x - $logisticX0))), 2)"
+  def logisticExpAddOne(x: Double): Double = if (checkX(x)) 1 + logisticExp(x)
+  else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
+
+  /**
+    * to calculate the exp part of logistic function.
+    *
+    * @param x independent variable.
+    * @return { @code exp(-k*(x-x0))}
+    **/
+  def logisticExp(x: Double): Double = if (checkX(x)) exp(-logisticK * (x - logisticX0))
+  else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
     * The method {@code integrate(x: Double)} is used to get
@@ -92,12 +97,6 @@ final class Logistic(val logisticM: Double = 1.0,
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
-    * <p>The string form of analysis formula of
-    * univariate integral function.</p>
-    */
-  override val iformula: String = s"$logisticM * (x + ((log(exp(-$logisticK * (x - $logisticX0)))) / ($logisticK)))"
-
-  /**
     * the method {@code value(t: DerivativeStructure)} is used to get
     * the {@code DerivativeStructure} form of function for {@code differential()}.
     *
@@ -105,11 +104,6 @@ final class Logistic(val logisticM: Double = 1.0,
     * @return the { @code DerivativeStructure} form of function.
     */
   override def value(t: DerivativeStructure): DerivativeStructure = t.subtract(logisticX0).multiply(-logisticK).exp().add(1).pow(-1).multiply(logisticM)
-
-  /**
-    * The string form of analysis formula of univariate function.
-    */
-  override val formula: String = s"$logisticM / (1 + exp(-$logisticK * (x - $logisticX0)))"
 
   /**
     * the method {@code value(x: Double)} is used to get
@@ -162,13 +156,13 @@ object Logistic {
     if (logistic == null) None
     else Some(logistic.logisticM, logistic.logisticK, logistic.logisticX0)
 
-  def logisticExp(logisticK: Double, logisticX0: Double)(x: Double): Double = exp(-logisticK * (x - logisticX0))
-
-  def logisticExpAddOne(logisticK: Double, logisticX0: Double)(x: Double): Double = 1 + logisticExp(logisticK, logisticX0)(x)
-
   def logistic(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = logisticM / logisticExpAddOne(logisticK, logisticX0)(x)
 
   def logisticDerivative(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = (logisticM * logisticK * logisticExp(logisticK, logisticX0)(x)) / pow(logisticExpAddOne(logisticK, logisticX0)(x), 2)
+
+  def logisticExp(logisticK: Double, logisticX0: Double)(x: Double): Double = exp(-logisticK * (x - logisticX0))
+
+  def logisticExpAddOne(logisticK: Double, logisticX0: Double)(x: Double): Double = 1 + logisticExp(logisticK, logisticX0)(x)
 
   def logisticIntegrate(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = logisticM * (x + log(logisticExpAddOne(logisticK, logisticX0)(x)) / logisticK)
 

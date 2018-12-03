@@ -26,6 +26,12 @@ package cn.edu.gxust.jiweihuang.scala.math.function
 trait TUnivariateDerivativeFunction extends TUnivariateFunction {
 
   /**
+    * <p>The string form of analysis formula of
+    * univariate derivative function.</p>
+    */
+  val dformula: String
+
+  /**
     * <p>The method {@code derivative(x: Double)} is used to
     * get the derivative  value of univariate derivative function.</p>
     *
@@ -33,10 +39,4 @@ trait TUnivariateDerivativeFunction extends TUnivariateFunction {
     * @return the derivative value.
     */
   def derivative(x: Double): Double
-
-  /**
-    * <p>The string form of analysis formula of
-    * univariate derivative function.</p>
-    */
-  val dformula: String
 }

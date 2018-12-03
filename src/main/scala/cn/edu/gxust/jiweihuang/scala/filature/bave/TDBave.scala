@@ -15,6 +15,6 @@
  */
 package cn.edu.gxust.jiweihuang.scala.filature.bave
 
-trait TDBave extends TBave[Int]{
+trait TDBave extends TBave[Int] {
 
 }

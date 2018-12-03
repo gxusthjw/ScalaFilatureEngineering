@@ -18,12 +18,14 @@ package cn.edu.gxust.jiweihuang.scala.math
 /**
   * <p>The object {@code NumericalConstants} is used for
   * representing some constant of numerical calculation.</p>
+  *
   * @author JiweiHuang.
   * @version 1.0.0_build-20181127.
   */
 object NumericalConstants {
   /**
     * The precision of numerical calculation.
+    *
     * @since 1.0.0_build-20181127.
     */
   val PRECISION: Double = 1.0e-15

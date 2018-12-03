@@ -40,6 +40,10 @@ trait TUnivariateFunction extends UnivariateFunction with Serializable {
     * The upper limit of independent variable.
     */
   val upperX: Double = Double.PositiveInfinity
+  /**
+    * The string form of analysis formula of univariate function.
+    */
+  val formula: String
 
   /**
     * <p>check the value {@code x} whether
@@ -50,9 +54,4 @@ trait TUnivariateFunction extends UnivariateFunction with Serializable {
     *         in interval of independent variable.
     */
   def checkX(x: Double): Boolean = if (x >= lowerX && x <= upperX) true else false
-
-  /**
-    * The string form of analysis formula of univariate function.
-    */
-  val formula: String
 }
