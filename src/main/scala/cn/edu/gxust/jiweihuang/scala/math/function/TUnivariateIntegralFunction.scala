@@ -16,7 +16,7 @@
 package cn.edu.gxust.jiweihuang.scala.math.function
 
 /**
-  * <p>The trait {@code TUnivariateIntegralFunction} is used for
+  * <p>The trait [[TUnivariateIntegralFunction]] is used for
   * representing univariate integral function.</p>
   *
   * @author JiweiHuang
@@ -36,7 +36,7 @@ trait TUnivariateIntegralFunction extends TUnivariateFunction {
   var integralConstant: Double = 0.0
 
   /**
-    * The method {@code integrate(x: Double)} is used to get
+    * The method {{{integrate(x: Double)}}} is used to get
     * the integral value of univariate integral function.
     *
     * @param x independent variable.
@@ -45,7 +45,7 @@ trait TUnivariateIntegralFunction extends TUnivariateFunction {
   def integrate(x: Double): Double
 
   /**
-    * The method {@code integrate(x: Double)} is used to get
+    * The method {{{integrate(x: Double)}}} is used to get
     * the definite integral value of univariate integral function.
     *
     * @param x0 lower limit of integral

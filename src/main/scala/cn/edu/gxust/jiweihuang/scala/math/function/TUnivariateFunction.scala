@@ -46,7 +46,7 @@ trait TUnivariateFunction extends UnivariateFunction with Serializable {
   val formula: String
 
   /**
-    * <p>check the value {@code x} whether
+    * <p>check the value {x} whether
     * is in interval of independent variable.</p>
     *
     * @param x independent variable.

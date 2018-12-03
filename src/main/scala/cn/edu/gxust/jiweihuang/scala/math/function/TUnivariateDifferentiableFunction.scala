@@ -18,10 +18,10 @@ package cn.edu.gxust.jiweihuang.scala.math.function
 import org.hipparchus.analysis.differentiation.{DSFactory, UnivariateDifferentiableFunction}
 
 /**
-  * <p>The trait {@code TUnivariateDifferentiableFunction} is used for
+  * <p>The trait [[TUnivariateDifferentiableFunction]] is used for
   * representing univariate differentiable function.it inherit from
-  * the interface {@code UnivariateDifferentiableFunction} which in
-  * {@code org.hipparchus.analysis.differentiation} package of Hipparchus
+  * the interface [[UnivariateDifferentiableFunction]] which in
+  * {{{org.hipparchus.analysis.differentiation}}} package of Hipparchus
   * Library for utilizing the tools of numerical differentiation.</p>
   *
   * @author JiweiHuang
@@ -32,9 +32,9 @@ import org.hipparchus.analysis.differentiation.{DSFactory, UnivariateDifferentia
 trait TUnivariateDifferentiableFunction extends TUnivariateFunction
   with UnivariateDifferentiableFunction {
   /**
-    * <p>The method {@code differential(x: Double, order: Int = 1)} is
+    * <p>The method {{{differential(x: Double, order: Int = 1)}}} is
     * used to get the differential value of univariate function
-    * with any {@code order}.</p>
+    * with any {{{order}}}.</p>
     * <p>it utilizes the algorithm of Rall's numbers.</p>
     *
     * @param x     independent variable.
@@ -42,6 +42,6 @@ trait TUnivariateDifferentiableFunction extends TUnivariateFunction
     * @return the differential value.
     */
   def differential(x: Double, order: Int = 1): Double =
-    value((new DSFactory(1, order)).variable(0,
+    value(new DSFactory(1, order).variable(0,
       x)).getPartialDerivative(order)
 }
