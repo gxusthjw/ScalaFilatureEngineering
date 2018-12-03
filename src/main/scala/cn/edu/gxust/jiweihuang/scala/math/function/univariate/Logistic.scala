@@ -23,17 +23,17 @@ import scala.math.{exp, log, pow}
 
 
 /**
-  * <p>The class {@code Logistic} is used for representing
+  * <p>The class [[Logistic]] is used for representing
   * the logistic function.</p>
   *
-  * <p>the formula:l(x) = m/(1+exp(-k*(x-x0)))</p>
+  * <p>the formula:{{{ l(x) = m/(1+exp(-k*(x-x0)))}}}</p>
   *
   * @param logisticM  The parameter {m} of logistic function.
   * @param logisticK  The parameter {k} of logistic function.
   * @param logisticX0 The parameter {x0} of logistic function.
   */
 final class Logistic(val logisticM: Double = 1.0,
-                     val logisticK: Double = (-1.0),
+                     val logisticK: Double = -1.0,
                      val logisticX0: Double = 0.0)
   extends TUnivariateDifferentiableFunction
     with TUnivariateIntegrableFunction
@@ -59,7 +59,7 @@ final class Logistic(val logisticM: Double = 1.0,
   override val formula: String = s"$logisticM / (1 + exp(-$logisticK * (x - $logisticX0)))"
 
   /**
-    * <p>The method {@code derivative(x: Double)} is used to
+    * <p>The method {{{derivative(x: Double)}}} is used to
     * get the derivative  value of univariate derivative function.</p>
     *
     * @param x independent variable.
@@ -87,27 +87,27 @@ final class Logistic(val logisticM: Double = 1.0,
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
-    * The method {@code integrate(x: Double)} is used to get
+    * The method {{{integrate(x: Double)}}} is used to get
     * the integral value of univariate integral function.
     *
     * @param x independent variable.
     * @return the integral value.
     */
-  override def integrate(x: Double): Double = if (checkX(x)) logisticM * (x + ((log(logisticExpAddOne(x))) / (logisticK)))
+  override def integrate(x: Double): Double = if (checkX(x)) logisticM * (x + (log(logisticExpAddOne(x)) / logisticK))
   else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
   /**
-    * the method {@code value(t: DerivativeStructure)} is used to get
-    * the {@code DerivativeStructure} form of function for {@code differential()}.
+    * the method {{{value(t: DerivativeStructure)}}} is used to get
+    * the [[[DerivativeStructure]]] form of function for {{{differential()}}}.
     *
-    * @param t the { @code DerivativeStructure} form of independent variable.
-    * @return the { @code DerivativeStructure} form of function.
+    * @param t the [[DerivativeStructure]] form of independent variable.
+    * @return the [[DerivativeStructure]] form of function.
     */
   override def value(t: DerivativeStructure): DerivativeStructure = t.subtract(logisticX0).multiply(-logisticK).exp().add(1).pow(-1).multiply(logisticM)
 
   /**
-    * the method {@code value(x: Double)} is used to get
-    * the function value at {@code x}.
+    * the method {{{value(x: Double)}}} is used to get
+    * the function value at {{{x}}}.
     *
     * @param x independent variable.
     * @return the function value at { @code x}.
@@ -133,17 +133,17 @@ final class Logistic(val logisticM: Double = 1.0,
       val m = parameters(0)
       val k = parameters(1)
       val x0 = parameters(2)
-      val result = Array[Double](0, 0, 0)
+      val result = Array[Double](3)
       result(0) = 1 / (1 + exp(-k * (x - x0)))
-      result(1) = -(exp(-k * (x - x0)) * m * (x0 - x)) / (pow(1 + exp(-k * (x - x0)), 2))
-      result(2) = -(exp(-k * (x - x0)) * k * m) / (pow(1 + exp(-k * (x - x0)), 2))
+      result(1) = -(exp(-k * (x - x0)) * m * (x0 - x)) / pow(1 + exp(-k * (x - x0)), 2)
+      result(2) = -(exp(-k * (x - x0)) * k * m) / pow(1 + exp(-k * (x - x0)), 2)
       result
     }
 
     def checkParameter(parameters: Seq[Double]): Unit = {
       if (parameters == null) throw new IllegalArgumentException(s"Expected the parameter {parameters != null},but got {parameters = null}}")
       if (parameters.length != 3) throw new IllegalArgumentException(s"Expected the parameter {parameters.length == 3},but got {parameters.length = ${parameters.length}}")
-      if (parameters(0) == 0) throw new IllegalArgumentException(s"Expected the parameter {parameters(0) != 0},but got {parameters(0) = ${parameters(0)}}")
+      if (parameters.head == 0) throw new IllegalArgumentException(s"Expected the parameter {parameters(0) != 0},but got {parameters(0) = ${parameters.head}}")
     }
   }
 
