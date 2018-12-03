@@ -34,12 +34,12 @@ trait TUnivariateFunction extends UnivariateFunction with Serializable {
   /**
     * The lower limit of independent variable.
     */
-  val lowerX: Double = Double.NegativeInfinity
+  val lowerX: Double = Double.MinValue
 
   /**
     * The upper limit of independent variable.
     */
-  val upperX: Double = Double.PositiveInfinity
+  val upperX: Double = Double.MaxValue
   /**
     * The string form of analysis formula of univariate function.
     */

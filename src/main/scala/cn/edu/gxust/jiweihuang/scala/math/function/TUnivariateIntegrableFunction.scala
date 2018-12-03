@@ -27,6 +27,8 @@ import org.hipparchus.analysis.integration._
   * @see TUnivariateFunction
   */
 trait TUnivariateIntegrableFunction extends TUnivariateFunction {
+  private[this] val ITERATIVE_LEGENDRE_GAUSS = 20
+
   /**
     * <p>to get the definite integral value of univariate function
     * with Romberg algorithm</p>
@@ -36,7 +38,7 @@ trait TUnivariateIntegrableFunction extends TUnivariateFunction {
     * @return the definite integral value.
     */
   def integrateRomberg(x0: Double = lowerX, x1: Double = upperX): Double =
-    (new RombergIntegrator()).integrate(Int.MaxValue, this, x0, x1)
+    new RombergIntegrator().integrate(Int.MaxValue, this, x0, x1)
 
   /**
     * <p>to get the definite integral value of univariate function
@@ -47,7 +49,7 @@ trait TUnivariateIntegrableFunction extends TUnivariateFunction {
     * @return the definite integral value.
     */
   def integrateSimpson(x0: Double = lowerX, x1: Double = upperX): Double =
-    (new SimpsonIntegrator()).integrate(Int.MaxValue, this, x0, x1)
+    new SimpsonIntegrator().integrate(Int.MaxValue, this, x0, x1)
 
   /**
     * <p>to get the definite integral value of univariate function
@@ -58,7 +60,7 @@ trait TUnivariateIntegrableFunction extends TUnivariateFunction {
     * @return the definite integral value.
     */
   def integrateMidPoint(x0: Double = lowerX, x1: Double = upperX): Double =
-    (new MidPointIntegrator()).integrate(Int.MaxValue, this, x0, x1)
+    new MidPointIntegrator().integrate(Int.MaxValue, this, x0, x1)
 
   /**
     * <p>to get the definite integral value of univariate function
@@ -69,7 +71,7 @@ trait TUnivariateIntegrableFunction extends TUnivariateFunction {
     * @return the definite integral value.
     */
   def integrateTrapezoid(x0: Double = lowerX, x1: Double = upperX): Double =
-    (new TrapezoidIntegrator()).integrate(Int.MaxValue, this, x0, x1)
+    new TrapezoidIntegrator().integrate(Int.MaxValue, this, x0, x1)
 
   /**
     * <p>to get the definite integral value of univariate function
@@ -80,7 +82,7 @@ trait TUnivariateIntegrableFunction extends TUnivariateFunction {
     * @return the definite integral value.
     */
   def integrateIterativeLegendreGauss(x0: Double = lowerX, x1: Double = upperX): Double =
-    (new IterativeLegendreGaussIntegrator(NumericalConstants.ITERATIVE_LEGENDRE_GAUSS,
+    new IterativeLegendreGaussIntegrator(NumericalConstants.ITERATIVE_LEGENDRE_GAUSS,
       BaseAbstractUnivariateIntegrator.DEFAULT_RELATIVE_ACCURACY,
-      BaseAbstractUnivariateIntegrator.DEFAULT_ABSOLUTE_ACCURACY)).integrate(Int.MaxValue, this, x0, x1)
+      BaseAbstractUnivariateIntegrator.DEFAULT_ABSOLUTE_ACCURACY).integrate(Int.MaxValue, this, x0, x1)
 }

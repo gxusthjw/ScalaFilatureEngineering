@@ -29,6 +29,4 @@ object NumericalConstants {
     * @since 1.0.0_build-20181127.
     */
   val PRECISION: Double = 1.0e-15
-
-  val ITERATIVE_LEGENDRE_GAUSS = 20
 }
