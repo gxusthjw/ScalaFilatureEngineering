@@ -52,6 +52,6 @@ trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction
 
   override def value(ds: DerivativeStructure): DerivativeStructure = quadraticVertex.value(ds).multiply(logistic.value(ds)).add(quadraticVertexLogisticD)
 
-  override def value(x: Double): Double = logistic.value(x) * quadraticVertex.vertex(x) + quadraticVertexLogisticD
+  override def value(x: Double): Double = logistic.value(x) * quadraticVertex.value(x) + quadraticVertexLogisticD
 }
 

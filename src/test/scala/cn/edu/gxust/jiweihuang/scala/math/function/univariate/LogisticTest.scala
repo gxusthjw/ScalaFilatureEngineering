@@ -15,7 +15,6 @@
  */
 package cn.edu.gxust.jiweihuang.scala.math.function.univariate
 
-import cn.edu.gxust.jiweihuang.scala.math.MathBase
 import cn.edu.gxust.jiweihuang.scala.test.UnitSpec
 
 class LogisticTest extends UnitSpec {
@@ -34,13 +33,13 @@ class LogisticTest extends UnitSpec {
 
   "the derivative of Logistic" should "equal the differential of Logistic" in {
     val logistic = Logistic(1, 2, 3)
-    assert(logistic.derivative(0) - logistic.differential(0) <= NumericalConstants.PRECISION)
-    assert(logistic.derivative(100) - logistic.differential(100) <= NumericalConstants.PRECISION)
-    assert(logistic.derivative(-100) - logistic.differential(-100) <= NumericalConstants.PRECISION)
-    assert(logistic.derivative(200) - logistic.differential(200) <= NumericalConstants.PRECISION)
-    assert(logistic.derivative(-200) - logistic.differential(-200) <= NumericalConstants.PRECISION)
-    assert(logistic.derivative(10) - logistic.differential(10) <= NumericalConstants.PRECISION)
-    assert(logistic.derivative(5) - logistic.differential(5) <= NumericalConstants.PRECISION)
+    assert(logistic.derivative(0) - logistic.differential(0) <= logistic.NumericalPrecision)
+    assert(logistic.derivative(100) - logistic.differential(100) <= logistic.NumericalPrecision)
+    assert(logistic.derivative(-100) - logistic.differential(-100) <= logistic.NumericalPrecision)
+    assert(logistic.derivative(200) - logistic.differential(200) <= logistic.NumericalPrecision)
+    assert(logistic.derivative(-200) - logistic.differential(-200) <= logistic.NumericalPrecision)
+    assert(logistic.derivative(10) - logistic.differential(10) <= logistic.NumericalPrecision)
+    assert(logistic.derivative(5) - logistic.differential(5) <= logistic.NumericalPrecision)
   }
 
   "the integrate of Logistic" should "equal to integralSimson of Logistic" in {
