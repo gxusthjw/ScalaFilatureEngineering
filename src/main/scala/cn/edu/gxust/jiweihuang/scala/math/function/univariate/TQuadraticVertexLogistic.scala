@@ -22,7 +22,8 @@ import scala.math._
 
 trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction
   with TUnivariateIntegrableFunction
-  with TUnivariateDerivativeFunction with TUnivariateIntegralFunction {
+  with TUnivariateDerivativeFunction
+  with TUnivariateIntegralFunction {
   override val formula: String = s"($quadraticVertexA*pow(x-$quadraticVertexB,2)+$quadraticVertexC)*$logisticM / (1 + exp(-$logisticK*(x-$logisticX0))) + $quadraticVertexLogisticD"
   override val dformula: String = s"2 * $quadraticVertexA * (x - $quadraticVertexB) * $logisticM / (1 + exp(-$logisticK * (x - $logisticX0))) + ($logisticM * $logisticK * exp(-$logisticK * (x - $logisticX0))) / pow((1 + exp(-$logisticK * (x - $logisticX0))), 2) * $quadraticVertexA * pow(x - $quadraticVertexB, 2) + $quadraticVertexC +$quadraticVertexLogisticD"
   override val iformula: String = s"$quadraticVertexLogisticD * x + $quadraticVertexA * $logisticM * pow(x, 3) / 3 - 2 * $quadraticVertexA * $quadraticVertexB * $logisticM * x * log(1 + exp($logisticK * (x - $logisticX0))) / $logisticK + $quadraticVertexA * pow($quadraticVertexB, 2) * $logisticM * log(exp($logisticK * x) + exp($logisticK * $logisticX0)) / $logisticK + $quadraticVertexC * $logisticM * log(exp($logisticK * x) + exp($logisticK * $logisticX0)) / $logisticK + $quadraticVertexA * $logisticM * pow(x, 2) * log(1 + exp($logisticK * ($logisticX0 - x))) / $logisticK"

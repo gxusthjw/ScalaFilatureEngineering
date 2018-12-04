@@ -15,6 +15,11 @@
  */
 package cn.edu.gxust.jiweihuang.scala.math.function.univariate
 
-class QuadraticVertexLogisticTest {
+import cn.edu.gxust.jiweihuang.scala.test.UnitSpec
 
+class QuadraticVertexLogisticTest extends UnitSpec {
+  "" should "" in {
+    val qvl0 = QuadraticVertexLogistic()
+    println(s"qvl0.differential(2) = ${qvl0.differential(2)}")
+  }
 }
