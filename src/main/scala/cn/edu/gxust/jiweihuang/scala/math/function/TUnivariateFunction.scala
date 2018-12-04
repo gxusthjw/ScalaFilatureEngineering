@@ -15,21 +15,24 @@
  */
 package cn.edu.gxust.jiweihuang.scala.math.function
 
+import cn.edu.gxust.jiweihuang.scala.math.MathBase
 import org.hipparchus.analysis.UnivariateFunction
 
 /**
   * <p>The trait [[TUnivariateFunction]] is used for
   * representing univariate function.it inherit from
   * the interface [[UnivariateFunction]] which
-  * in {org.hipparchus.analysis} of Hipparchus library
+  * in {{{org.hipparchus.analysis}}} of Hipparchus library
   * for utilizing the tools of numerical calculation.</p>
   *
   * @author JiweiHuang
-  * @version 1.0.0_build-20181130
+  * @version 1.0.0_build-20181201
   * @see UnivariateFunction
+  * @see MathBase
   * @see Serializable
   */
-trait TUnivariateFunction extends UnivariateFunction with Serializable {
+trait TUnivariateFunction extends UnivariateFunction
+  with MathBase with Serializable {
 
   /**
     * The lower limit of independent variable.
@@ -53,5 +56,5 @@ trait TUnivariateFunction extends UnivariateFunction with Serializable {
     * @return boolean for whether the value { @code x} is
     *         in interval of independent variable.
     */
-  def checkX(x: Double): Boolean = if (x >= lowerX && x <= upperX) true else false
+  def checkX(x: Double): Boolean = x >= lowerX && x <= upperX
 }

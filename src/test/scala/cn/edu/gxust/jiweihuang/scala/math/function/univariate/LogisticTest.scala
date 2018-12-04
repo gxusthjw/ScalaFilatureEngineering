@@ -15,7 +15,7 @@
  */
 package cn.edu.gxust.jiweihuang.scala.math.function.univariate
 
-import cn.edu.gxust.jiweihuang.scala.math.NumericalConstants
+import cn.edu.gxust.jiweihuang.scala.math.MathBase
 import cn.edu.gxust.jiweihuang.scala.test.UnitSpec
 
 class LogisticTest extends UnitSpec {

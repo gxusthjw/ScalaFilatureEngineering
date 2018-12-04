@@ -16,7 +16,7 @@
 package cn.edu.gxust.jiweihuang.scala.math.function
 
 /**
-  * <p>The trait [[[TUnivariateDerivativeFunction]] is used for
+  * <p>The trait [[TUnivariateDerivativeFunction]] is used for
   * representing analytical univariate derivative function.</p>
   *
   * @author JiweiHuang
@@ -33,7 +33,7 @@ trait TUnivariateDerivativeFunction extends TUnivariateFunction {
 
   /**
     * <p>The method {{{derivative(x: Double)}}} is used to
-    * get the derivative  value of univariate derivative function.</p>
+    * get the value of univariate derivative function at {{{x}}}.</p>
     *
     * @param x independent variable.
     * @return the derivative value.

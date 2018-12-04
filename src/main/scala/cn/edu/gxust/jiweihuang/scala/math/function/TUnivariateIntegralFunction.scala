@@ -36,8 +36,8 @@ trait TUnivariateIntegralFunction extends TUnivariateFunction {
   var integralConstant: Double = 0.0
 
   /**
-    * The method {{{integrate(x: Double)}}} is used to get
-    * the integral value of univariate integral function.
+    * <p>The method {{{integrate(x: Double)}}} is used to get
+    * the integral value of univariate integral function.</p>
     *
     * @param x independent variable.
     * @return the integral value.
@@ -45,8 +45,8 @@ trait TUnivariateIntegralFunction extends TUnivariateFunction {
   def integrate(x: Double): Double
 
   /**
-    * The method {{{integrate(x: Double)}}} is used to get
-    * the definite integral value of univariate integral function.
+    * <p>The method {{{integrate(x: Double)}}} is used to get
+    * the definite integral value of univariate integral function.</p>
     *
     * @param x0 lower limit of integral
     * @param x1 upper limit of integral

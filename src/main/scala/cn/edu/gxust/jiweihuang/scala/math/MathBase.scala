@@ -16,17 +16,17 @@
 package cn.edu.gxust.jiweihuang.scala.math
 
 /**
-  * <p> The object [[NumericalConstants]] is used for
+  * <p> The trait [[MathBase]] is used for
   * representing some constant of numerical calculation.</p>
   *
   * @author JiweiHuang.
   * @version 1.0.0_build-20181127.
   */
-object NumericalConstants {
+trait MathBase {
   /**
     * The precision of numerical calculation.
     *
     * @since 1.0.0_build-20181127.
     */
-  val PRECISION: Double = 1.0e-15
+  val NumericalPrecision: Double = 1.0e-15
 }

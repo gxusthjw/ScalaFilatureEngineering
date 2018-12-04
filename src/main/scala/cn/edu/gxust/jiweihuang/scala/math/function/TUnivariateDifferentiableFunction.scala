@@ -35,7 +35,9 @@ trait TUnivariateDifferentiableFunction extends TUnivariateFunction
     * <p>The method {{{differential(x: Double, order: Int = 1)}}} is
     * used to get the differential value of univariate function
     * with any {{{order}}}.</p>
-    * <p>it utilizes the algorithm of Rall's numbers.</p>
+    * <p>it utilizes the algorithm of Rall's numbers
+    * which depend on the core class
+    * [[org.hipparchus.analysis.differentiation.DerivativeStructure]].</p>
     *
     * @param x     independent variable.
     * @param order the differential order.
