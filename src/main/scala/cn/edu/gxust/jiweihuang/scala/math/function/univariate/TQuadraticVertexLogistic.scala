@@ -18,8 +18,9 @@ package cn.edu.gxust.jiweihuang.scala.math.function.univariate
 import cn.edu.gxust.jiweihuang.scala.math.function.{TUnivariateDerivativeFunction, TUnivariateDifferentiableFunction, TUnivariateIntegrableFunction, TUnivariateIntegralFunction}
 import org.hipparchus.analysis.differentiation.DerivativeStructure
 
-trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction with TUnivariateIntegrableFunction with
-  TUnivariateDerivativeFunction with TUnivariateIntegralFunction {
+trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction
+  with TUnivariateIntegrableFunction
+  with TUnivariateDerivativeFunction with TUnivariateIntegralFunction {
   override val formula: String
   override val dformula: String
   override val iformula: String
@@ -31,6 +32,7 @@ trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction with TU
   val logisticK: Double
   val logisticX0: Double
   val logistic: Logistic = Logistic(logisticM, logisticK, logisticX0)
+  val quadraticVertexLogisticD: Double
 
   override def derivative(x: Double): Double
 
@@ -41,6 +43,3 @@ trait TQuadraticVertexLogistic extends TUnivariateDifferentiableFunction with TU
   override def value(v: Double): Double
 }
 
-object TQuadraticVertexLogistic {
-
-}

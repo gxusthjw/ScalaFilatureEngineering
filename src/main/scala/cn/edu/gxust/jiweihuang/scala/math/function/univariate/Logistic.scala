@@ -26,7 +26,7 @@ import scala.math.{exp, log, pow}
   * <p>The class [[Logistic]] is used for representing
   * the logistic function.</p>
   *
-  * <p>the formula:{{{ l(x) = m/(1+exp(-k*(x-x0)))}}}</p>
+  * <p>the formula:{{{l(x) = m/(1+exp(-k*(x-x0)))}}}</p>
   *
   * @param logisticM  The parameter {m} of logistic function.
   * @param logisticK  The parameter {k} of logistic function.
@@ -116,6 +116,7 @@ final class Logistic(val logisticM: Double = 1.0,
     if (checkX(x)) logisticM / (1 + exp(-logisticK * (x - logisticX0)))
     else throw new IllegalArgumentException(s"Expected the parameter {$lowerX <= x <= $upperX},but get {x = $x}")
 
+
   /**
     *
     */
@@ -147,29 +148,50 @@ final class Logistic(val logisticM: Double = 1.0,
     }
   }
 
+  override def equals(other: Any): Boolean = other match {
+    case that: Logistic =>
+      (that canEqual this) &&
+        logisticM == that.logisticM &&
+        logisticK == that.logisticK &&
+        logisticX0 == that.logisticX0
+    case _ => false
+  }
+
+  override def hashCode(): Int = {
+    val state = Seq(logisticM, logisticK, logisticX0)
+    state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
+  }
+
+  /**
+    * whether {{{other}}} is instance of class [[QuadraticVertex]]
+    *
+    * @param other another instance of class [[QuadraticVertex]]
+    * @return {{{Boolean}}} for whether {{{other}}} is instance of class [[QuadraticVertex]]
+    */
+  def canEqual(other: Any): Boolean = other.isInstanceOf[QuadraticVertex]
 }
 
 object Logistic {
-  def apply(logisticM: Double, logisticK: Double, logisticX0: Double): Logistic = new Logistic(logisticM, logisticK, logisticX0)
+  def apply(logisticM: Double = 1.0, logisticK: Double = -1.0, logisticX0: Double = 0.0): Logistic = new Logistic(logisticM, logisticK, logisticX0)
 
   def unapply(logistic: Logistic): Option[(Double, Double, Double)] =
     if (logistic == null) None
     else Some(logistic.logisticM, logistic.logisticK, logistic.logisticX0)
 
-  def logistic(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = logisticM / logisticExpAddOne(logisticK, logisticX0)(x)
+  def logistic(logisticM: Double = 1.0, logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = logisticM / logisticExpAddOne(logisticK, logisticX0)(x)
 
-  def logisticDerivative(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = (logisticM * logisticK * logisticExp(logisticK, logisticX0)(x)) / pow(logisticExpAddOne(logisticK, logisticX0)(x), 2)
+  def logisticDerivative(logisticM: Double = 1.0, logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = (logisticM * logisticK * logisticExp(logisticK, logisticX0)(x)) / pow(logisticExpAddOne(logisticK, logisticX0)(x), 2)
 
-  def logisticExp(logisticK: Double, logisticX0: Double)(x: Double): Double = exp(-logisticK * (x - logisticX0))
+  def logisticExp(logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = exp(-logisticK * (x - logisticX0))
 
-  def logisticExpAddOne(logisticK: Double, logisticX0: Double)(x: Double): Double = 1 + logisticExp(logisticK, logisticX0)(x)
+  def logisticExpAddOne(logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = 1 + logisticExp(logisticK, logisticX0)(x)
 
-  def logisticIntegrate(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = logisticM * (x + log(logisticExpAddOne(logisticK, logisticX0)(x)) / logisticK)
+  def logisticIntegrate(logisticM: Double = 1.0, logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = logisticM * (x + log(logisticExpAddOne(logisticK, logisticX0)(x)) / logisticK)
 
-  def logisticDerivativeM(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = 1 / logisticExpAddOne(logisticK, logisticX0)(x)
+  def logisticDerivativeM(logisticM: Double = 1.0, logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = 1 / logisticExpAddOne(logisticK, logisticX0)(x)
 
-  def logisticDerivativeK(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = -(logisticM * (-x + logisticX0) * logisticExp(logisticK, logisticM)(x)) / pow(logisticExpAddOne(logisticK, logisticX0)(x), 2)
+  def logisticDerivativeK(logisticM: Double = 1.0, logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = -(logisticM * (-x + logisticX0) * logisticExp(logisticK, logisticM)(x)) / pow(logisticExpAddOne(logisticK, logisticX0)(x), 2)
 
-  def logisticDerivativeX0(logisticM: Double, logisticK: Double, logisticX0: Double)(x: Double): Double = -(logisticK * logisticM * logisticExp(logisticK, logisticX0)(x)) / pow(logisticExpAddOne(logisticK, logisticX0)(x), 2)
+  def logisticDerivativeX0(logisticM: Double = 1.0, logisticK: Double = -1.0, logisticX0: Double = 0.0)(x: Double): Double = -(logisticK * logisticM * logisticExp(logisticK, logisticX0)(x)) / pow(logisticExpAddOne(logisticK, logisticX0)(x), 2)
 }
 

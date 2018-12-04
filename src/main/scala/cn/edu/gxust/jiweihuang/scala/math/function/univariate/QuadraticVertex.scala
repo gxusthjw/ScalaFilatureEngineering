@@ -33,8 +33,10 @@ import scala.math._
   * @param quadraticVertexB the parameter {b} of the vertex form of quadratic function.
   * @param quadraticVertexC the parameter {c} of the vertex form of quadratic function.
   */
-final class QuadraticVertex(val quadraticVertexA: Double, val quadraticVertexB: Double,
-                            val quadraticVertexC: Double) extends TQuadratic {
+final class QuadraticVertex(val quadraticVertexA: Double = 1.0,
+                            val quadraticVertexB: Double = 0.0,
+                            val quadraticVertexC: Double = 0.0)
+  extends TQuadratic {
   /**
     * Ensure the parameters {{{quadraticVertexA != 0}}}
     */
@@ -244,4 +246,16 @@ object QuadraticVertex {
     }
   }
 
+  def quadraticVertex(quadraticVertexA: Double = 1.0, quadraticVertexB: Double = 0.0, quadraticVertexC: Double = 0.0)(x: Double): Double = quadraticVertexA * pow(x - quadraticVertexB, 2) + quadraticVertexC
+
+  def quadraticVertexDerivative(quadraticVertexA: Double = 1.0, quadraticVertexB: Double = 0.0, quadraticVertexC: Double = 0.0)(x: Double): Double = 2 * quadraticVertexA * (x - quadraticVertexB)
+
+  def quadraticVertexIntegrate(quadraticVertexA: Double = 1.0, quadraticVertexB: Double = 0.0, quadraticVertexC: Double = 0.0)(x: Double): Double = quadraticVertexA * pow(quadraticVertexB, 2.0) * x +
+    quadraticVertexC * x - quadraticVertexA * quadraticVertexB * pow(x, 2) + quadraticVertexA * pow(x, 3) / 3
+
+  def quadraticVertexDerivativeA(quadraticVertexA: Double = 1.0, quadraticVertexB: Double = 0.0, quadraticVertexC: Double = 0.0)(x: Double): Double = pow(x - quadraticVertexB, 2)
+
+  def quadraticVertexDerivativeB(quadraticVertexA: Double = 1.0, quadraticVertexB: Double = 0.0, quadraticVertexC: Double = 0.0)(x: Double): Double = -2 * quadraticVertexA * (x - quadraticVertexB)
+
+  def quadraticVertexDerivativeC(quadraticVertexA: Double = 1.0, quadraticVertexB: Double = 0.0, quadraticVertexC: Double = 0.0)(x: Double): Double = 1
 }
